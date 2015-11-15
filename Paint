@@ -1,0 +1,70 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package paint;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.JPanel;
+
+public class Paint extends JFrame implements ActionListener
+{
+    public JButton rectFill; 
+    public JButton rectEmpty;
+    public JButton ovalFill;
+    public JButton ovalEmpty;
+    public boolean check;
+    public boolean check1;
+
+    public void paint(Graphics g)
+    {
+        if(check==true)
+        {
+            g.setColor(Color.red);
+            g.fillRect(30, 50, 50, 50);
+        }
+        else if(check1==true)
+        {
+            g.setColor(Color.red);
+            g.clearRect(30, 50, 50, 50);
+        }
+    }
+
+    public void start()
+    {
+        setLayout(new BorderLayout());
+        rectFill=new JButton();
+        rectEmpty=new JButton();
+        ovalFill=new JButton();
+        ovalEmpty=new JButton();
+
+        rectFill.setPreferredSize(new Dimension(200,20));
+        rectFill.setText("Filled Rectangle"); 
+        rectFill.addActionListener(this);
+        
+        rectEmpty.setPreferredSize(new Dimension(200,20));
+        rectEmpty.setText("Empty Rectangle"); 
+        rectEmpty.addActionListener(this);
+
+        JPanel pan = new JPanel();
+        pan.add(rectFill);
+        pan.add(rectEmpty);
+        add(pan, BorderLayout.WEST);
+        setSize(500,500);
+        setVisible(true);
+    }    
+    public void actionPerformed(ActionEvent e) 
+    {    
+        check=true;
+        repaint();
+    }
+
+    public static void main(String args[])
+    {
+        Paint x = new Paint();
+        x.start();
+    }
+}
